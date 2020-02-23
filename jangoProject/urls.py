@@ -16,8 +16,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 import blogapp.views
+from django.conf.urls import include
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),                #ex) http://www.myblog.com/admin 이 된다는 소리
     path('', blogapp.views.index, name='index'),    # '' : 빈 공간이므로 윗줄에서admin 빠짐, 2번째는 만든 함수index 를 적용, name 값으로 url 값을 불러올 수 있음.
+    path('blogMain/', blogapp.views.blogMain, name='blogMain'),
+    path('blogMain/createBlog/', blogapp.views.createBlog, name='createBlog'),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('blogMain/detail/<int:blog_id>/', blogapp.views.detail, name='detail'),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
