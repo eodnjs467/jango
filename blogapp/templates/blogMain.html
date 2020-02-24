@@ -5,21 +5,22 @@
     <br>
 
     {% for blog in blogs %}
+        <a class="btn btn-lg btn-primary"
+                   href="{% url 'detail' blog.id %}"
+                   role="button">
         <main role="main" class="container">
             <div class="jumbotron">
-                <h1>제목 : {{ blog.title }}</h1>
+                <h1>{{ blog.title }}</h1>                   {# 제목  #}
                 <br>
-                <h4>작성일 : {{ blog.pub_date }}</h4>
-                <br>
-                <h4>작성자 : {{ blog.author }}</h4>
-                <br>
-{#                <p class="lead">{{ blog.body | safe }}</p>#}
+{#                <h4>작성일 : {{ blog.pub_date }}</h4>        {# 작성일  #}
 {#                <br>#}
-                <a class="btn btn-lg btn-primary"
-                   href="{% url 'detail' blog.id %}"
-                   role="button">View navbar docs </a>
+                <h4>{{ blog.author }}</h4>            {#작성자#}
+                <br>
+
+                세상에서 제일 맛있어                        {#상점 소개 or 위치#}
             </div>
         </main>
+        </a>
     {% endfor %}
 
 {% endblock %}
